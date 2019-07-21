@@ -1,0 +1,17 @@
+@mixin device-xs {
+  @media screen and (min-width: #{$screen-xs}) {
+    @content;
+  }
+}
+
+@mixin device-s {
+  @media screen and (min-width: #{$screen-s}) {
+    @content;
+  }
+}
+
+@mixin device-md {
+  @media screen and (min-width: #{$screen-md}) {
+    @content;
+  }
+}

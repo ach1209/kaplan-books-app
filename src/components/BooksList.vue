@@ -1,6 +1,6 @@
 <template>
   <div class="books__container md-layout md-alignment-center">
-    <div class="md-layout-item md-medium-size-50 md-small-size-75 md-xsmall-size-90 md-size-50" v-for="book in books" v-bind:key="book.id">
+    <div class="md-layout-item md-medium-size-50 md-small-size-50 md-xsmall-size-100 md-size-50" v-for="book in books" v-bind:key="book.id">
       <md-card>
         <md-card-header>
           <span>{{ book.volumeInfo.title }}</span>
@@ -33,7 +33,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 .books__container {
   max-width: 1000px;
@@ -44,17 +44,20 @@ export default {
   background-color: #ffffff;
   border-left: 4px solid #ffa839;
   margin-bottom: 30px;
-  height: 200px;
+  height: auto;
+
+  @include device-xs {
+    height: 200px;
+  }
+
+  @include device-s {
+    height: 200px;
+    margin-right: 20px;
+  }
 }
 
 .md-card-header span {
   font-weight: 700;
-}
-
-@media screen and (min-width: 961px) {
-  .md-card {
-    margin-right: 20px;
-  }
 }
 
 </style>
