@@ -1,15 +1,11 @@
 <template>
-  <div class="books__container md-layout md-alignment-center">
-    <div class="md-layout-item md-medium-size-50 md-small-size-50 md-xsmall-size-100 md-size-50" v-for="book in books" v-bind:key="book.id">
-      <md-card>
-        <md-card-header>
-          <span>{{ book.volumeInfo.title }}</span>
-        </md-card-header>
-        <md-card-content>
-          <p>Published by: {{ book.volumeInfo.publisher}}</p>
-          <p v-html="book.searchInfo.textSnippet"></p>
-        </md-card-content>
-      </md-card>
+  <div class="books__container">
+    <div class="card" v-for="book in books" v-bind:key="book.id">
+      <h3 class="card__header">{{ book.volumeInfo.title }}</h3>
+      <div class="card__content">
+        <p class="card__content--topMargin">Published by: {{ book.volumeInfo.publisher}}</p>
+        <p class="card__content--topMargin" v-html="book.searchInfo.textSnippet"></p>
+      </div>
     </div>  
   </div>
 </template>
@@ -33,31 +29,47 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 
 .books__container {
-  max-width: 1000px;
   margin: 0 auto;
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: 1fr;
+
+  @include device-med {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include device-lg {
+    width: 100rem;
+  }
 }
 
-.md-card {
-  background-color: #ffffff;
-  border-left: 4px solid #ffa839;
-  margin-bottom: 30px;
+.card {
+  background-color: $bgColor;
+  padding: 1.5rem;
   height: auto;
+  border-radius: 2px;
+  border-left: 4px solid #ffa839;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
 
-  @include device-xs {
-    height: 200px;
+  &__header {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $fontColor;
   }
 
-  @include device-s {
-    height: 200px;
-    margin-right: 20px;
-  }
-}
+  &__content {
+    font-size: 1.4rem;
+    line-height: 2rem;
+    letter-spacing: 0.03rem;
+    color: $fontColor;
 
-.md-card-header span {
-  font-weight: 700;
+    &--topMargin {
+      margin-top: 1.5rem;
+    }
+  }
 }
 
 </style>

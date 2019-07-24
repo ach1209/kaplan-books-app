@@ -1,12 +1,8 @@
 <template>
-  <md-app>
-    <md-app-toolbar class="md-primary" md-elevation="2">
-      <md-button class="md-icon-button">
-        <md-icon>menu</md-icon>
-      </md-button>
-      <span class="md-title">Kaplan Books</span>
-    </md-app-toolbar>
-  </md-app>
+  <div class="header">
+    <i class="material-icons header__menu">menu</i>
+    <div class="header__title">Kaplan Books</div>
+  </div>
 </template>
 
 <script>
@@ -15,10 +11,28 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss">
 
-.md-app {
-  background-color: #ffffff;
+.header {
+  background-color: $bgColor;
+  min-height: 6rem;
+  padding-right: 2rem;
+  padding-left: 2rem;
+  display: flex;
+  align-items: center;
+
+  &__menu {
+    &:hover,
+    &:focus {
+      cursor: pointer;
+    }
+  }
+
+  &__title {
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+    margin-left: 3rem;
+  }
 }
 
 </style>
