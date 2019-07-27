@@ -1,6 +1,6 @@
 <template>
   <div class="subHeader">
-    <h2 class="subHeader__title">Kaplan Books</h2>
+    <h2 class="subHeader__title">All Books</h2>
     <div class="subHeader__button">
       <span class="subHeader__buttonText">Add New Books</span>
     </div>

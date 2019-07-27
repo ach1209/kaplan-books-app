@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <i class="material-icons header__menu">menu</i>
-    <div class="header__title">Kaplan Books</div>
+    <span class="header__title">Kaplan Books</span>
   </div>
 </template>
 
