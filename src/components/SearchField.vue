@@ -35,13 +35,14 @@ export default {
   &__formGroup {
     width: 100%;
     position: relative;
+    display: grid;
+    grid-template-rows: 1fr;
   }
 
   &__input {
     margin-left: 1rem;
     border: none;
     background: none;
-    width: 100%;
     height: 3rem;
 
     &:focus {
@@ -54,12 +55,13 @@ export default {
     font-size: 1.5rem;
     transition: all 0.3s ease-in-out;
     position: absolute;
+    left: 0;
     opacity: 0;
     visibility: hidden;
   }
 
   &__input:focus ~ &__label {
-    transform: translateY(-4.5rem);
+    transform: translateY(-2rem);
     opacity: 1;
     visibility: visible;
     color: $fontColor;

@@ -3,8 +3,12 @@
     <div class="card" v-for="book in books" v-bind:key="book.id">
       <h3 class="card__header">{{ book.volumeInfo.title }}</h3>
       <div class="card__content">
-        <p class="card__content--topMargin">Published by: {{ book.volumeInfo.publisher}}</p>
-        <p class="card__content--topMargin" v-html="book.searchInfo.textSnippet"></p>
+        <p class="u-top-margin"><strong>Publisher:</strong> {{ book.volumeInfo.publisher}}</p>
+        <p class="u-top-margin" v-html="book.searchInfo.textSnippet"></p>
+        <span class="card-btn card-btn--enabled u-top-margin" v-if="book.saleInfo.saleability === 'FOR_SALE'">
+          <a v-bind:href="book.saleInfo.buyLink">Buy - ${{book.saleInfo.retailPrice.amount}}</a>
+        </span>
+        <span class="card-btn card-btn--disabled u-top-margin" v-else>Not Available</span>
       </div>
     </div>  
   </div>
@@ -61,13 +65,50 @@ export default {
   }
 
   &__content {
+    display: grid;
     font-size: 1.4rem;
     line-height: 2rem;
     letter-spacing: 0.03rem;
     color: $fontColor;
 
-    &--topMargin {
-      margin-top: 1.5rem;
+    @include device-med {
+      grid-template-rows: 4rem 10rem 1fr;
+    }
+  }
+
+  .u-top-margin {
+    margin-top: 1.5rem;
+  }
+
+  &-btn {
+    font-size: 1.2rem;     
+    width: 11rem;
+    padding: 0.75rem;
+    border-radius: 2px;
+    justify-self: flex-end;
+    align-self: center;
+    text-align: center;
+    text-transform: uppercase;
+    transition: all 0.2s ease-in-out;
+
+    &--enabled {
+      background-color: $btnBgColor;
+      box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+
+      a {
+        color: $fontColor2;      
+        text-decoration: none;
+      }
+
+      &:hover,
+      &:focus {
+        background-color: rgba($btnBgColor, 0.75);
+        cursor: pointer;
+      }
+    }
+
+    &--disabled {
+      background-color: $bgColor2;
     }
   }
 }

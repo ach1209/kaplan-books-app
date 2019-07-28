@@ -37,7 +37,7 @@ export default {
     align-self: center;
     justify-self: center;
 
-    @include device-lg {
+    @include device-med {
       justify-self: left;
     }
   }
@@ -48,7 +48,8 @@ export default {
     border-radius: 2px;
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
     justify-self: center;
-    text-align: center;    
+    text-align: center;
+    transition: all 0.2s ease-in-out;
 
     &:hover,
     &:focus {
@@ -56,14 +57,14 @@ export default {
       cursor: pointer;
     }
 
-    @include device-lg {
+    @include device-med {
       justify-self: end;
       margin: 0;
     }
   }
 
   &__buttonText {
-    color: #fff;    
+    color: $fontColor2;    
     font-size: 1.5rem;
     text-transform: uppercase;
   }
