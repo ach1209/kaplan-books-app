@@ -1,6 +1,13 @@
 <template>
   <div class="books__container">
-    <div class="card" v-for="book in books" v-bind:key="book.id">
+    <div class="searchField">
+      <i class="material-icons searchField__icon">search</i>
+      <div class="searchField__formGroup">
+        <input class="searchField__input" type="text" v-model="search">  
+        <label for="name" class="searchField__label">Search for books</label>
+      </div>
+    </div>
+    <div class="card" v-for="book in searchBooks" v-bind:key="book.id">
       <h3 class="card__header">{{ book.volumeInfo.title }}</h3>
       <div class="card__content">
         <p class="u-top-margin"><strong>Publisher:</strong> {{ book.volumeInfo.publisher}}</p>
@@ -15,20 +22,22 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
   name: 'BooksList',
   data() {
     return {
-      books: []
+      search: ''
     }
   },
-  created() {
-    const url = 'https://www.googleapis.com/books/v1/volumes?q=kaplan%20test%20prep'
-    axios.get(url).then(response => {
-      this.books = response.data.items;
-    })
+  props: {
+    books: Array
+  },
+  computed: {
+    searchBooks: function() {
+      return this.books.filter((book) => {
+        return book.volumeInfo.title.match(this.search);
+      });
+    }
   }
 }
 </script>
@@ -113,4 +122,58 @@ export default {
   }
 }
 
+.searchField {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+
+  @include device-med {
+    grid-column: 1 / span 2;
+  }
+
+  &__icon {
+    color: $fontColor;
+    align-self: flex-end;
+  }
+
+  &__formGroup {
+    width: 100%;
+    position: relative;
+    display: grid;
+    grid-template-rows: 1fr;
+    border-bottom: 1px solid #c3c3c3;    
+    
+    @include device-lg {
+      width: 46.5%;
+    }
+  }
+
+  &__input {
+    margin-left: 1rem;
+    border: none;
+    background: none;
+    height: 3rem;
+
+    &:focus {
+      outline: none;
+    }
+  }
+  
+  &__label {
+    margin-left: 1rem;
+    font-size: 1.5rem;
+    transition: all 0.3s ease-in-out;
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &__input:focus ~ &__label {
+    transform: translateY(-2rem);
+    opacity: 1;
+    visibility: visible;
+    color: $fontColor;
+  }
+}
 </style>

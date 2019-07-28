@@ -4,18 +4,13 @@
     <div class="subHeader__button">
       <span class="subHeader__buttonText">Add New Books</span>
     </div>
-    <SearchField />
   </div>
 </template>
 
 <script>
-import SearchField from './SearchField'
 
 export default {
-  name: 'SubHeader',
-  components: {
-    SearchField
-  }
+  name: 'SubHeader'
 }
 </script>
 
