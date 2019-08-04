@@ -54,7 +54,7 @@ body {
 #app {
   background-color: $appBgColor;
   padding-bottom: 2rem;
-  height: 100%;
+  height: 100vh;
   overflow: auto;
 }
 </style>

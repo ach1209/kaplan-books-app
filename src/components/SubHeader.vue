@@ -45,6 +45,7 @@ export default {
     justify-self: center;
     text-align: center;
     transition: all 0.2s ease-in-out;
+    @include flex-center-align;
 
     &:hover,
     &:focus {
@@ -60,7 +61,7 @@ export default {
 
   &__buttonText {
     color: $fontColor2;    
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     text-transform: uppercase;
   }
 }
