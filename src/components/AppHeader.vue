@@ -1,11 +1,11 @@
 <template>
   <div class="header">
     <div class="header__menu" v-bind:class="[isToggled ? 'header__menu--open' : 'header__menu--closed']">
-      <div class="header__menu-icon">
-        <a href="#"><i class="material-icons" v-on:click="toggleNav">menu</i></a>      
+      <div class="header__menu-icon" v-on:click="toggleNav">
+        <a href="#"><i class="material-icons">menu</i></a>      
       </div>
 
-      <ul class="header__menu-items">
+      <ul class="header__menu-items" v-bind:class="[isToggled ? 'header__menu-items--open' : 'header__menu-items--closed']">
         <li>
           <a href="#"><i class="material-icons">assignment</i>Project Management</a>
         </li>
@@ -49,12 +49,16 @@ export default {
     top: 0;
     left: 0;
     z-index: 1;
-    height: 100vh;
-    background-color: $bgColor;
-    border-right: 1px solid #e0e0e0;
     display: flex;
     flex-direction: column;
     transition: all 0.3s cubic-bezier(.86,.16,.12,.91);
+
+    @include device-med {
+      background-color: $bgColor;      
+      border-right: 1px solid $borderColor;      
+      border-bottom: none;
+      height: 100vh;    
+    }
 
     &:hover,
     &:focus {
@@ -73,8 +77,34 @@ export default {
     }
 
     &-items {
-        list-style-type: none;
-        display: block;
+      background-color: $bgColor;
+      list-style-type: none;
+      display: block;
+      border-bottom: 1px solid $borderColor;
+      width: 100vw;
+      transition: all 0.5s cubic-bezier(.86,.16,.12,.91);
+
+      @include device-med {
+        width: unset;
+        border: none;
+        transform: none;
+      }
+
+      &--closed {
+        transform: translateX(-100vw);
+
+        @include device-med {
+          transform: none;
+        }
+      }
+
+      &--open {
+        transform: translateX(0);
+
+        @include device-med {
+          transform: none;
+        }
+      }
 
       li {
         padding: 1rem 0;        
@@ -103,13 +133,19 @@ export default {
     }
 
     &--closed {
-      width: 6rem;
-      overflow: hidden;
+
+      @include device-med {
+        width: 6rem;
+        overflow: hidden;
+      }
     }
 
     &--open {
-      width: 22rem;
-      overflow: auto;
+
+      @include device-med {
+        width: 22rem;
+        overflow: auto;
+      }
     }
 
   }
@@ -122,7 +158,10 @@ export default {
     transition: all 0.3s cubic-bezier(.86,.16,.12,.91);
   
     &--pushed {
-      margin-left: 23rem;
+
+      @include device-med {
+        margin-left: 23rem;
+      }
     }
   }
 }
