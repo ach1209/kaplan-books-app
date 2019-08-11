@@ -38,14 +38,19 @@ export default {
 <style lang="scss">
 
 .header {
+  position: relative;
   background-color: $bgColor;
   min-height: 6rem;
   padding-right: 2rem;
   padding-left: 2rem;
   @include flex-center-align;
 
+  @include device-lg {
+    position: unset;
+  }
+
   &__menu {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     z-index: 1;
@@ -53,7 +58,8 @@ export default {
     flex-direction: column;
     transition: all 0.3s cubic-bezier(.86,.16,.12,.91);
 
-    @include device-med {
+    @include device-lg {
+      position: fixed;
       background-color: $bgColor;      
       border-right: 1px solid $borderColor;      
       border-bottom: none;
@@ -84,7 +90,7 @@ export default {
       width: 100vw;
       transition: all 0.5s cubic-bezier(.86,.16,.12,.91);
 
-      @include device-med {
+      @include device-lg {
         width: unset;
         border: none;
         transform: none;
@@ -93,7 +99,7 @@ export default {
       &--closed {
         transform: translateX(-100vw);
 
-        @include device-med {
+        @include device-lg {
           transform: none;
         }
       }
@@ -101,7 +107,7 @@ export default {
       &--open {
         transform: translateX(0);
 
-        @include device-med {
+        @include device-lg {
           transform: none;
         }
       }
@@ -134,7 +140,7 @@ export default {
 
     &--closed {
 
-      @include device-med {
+      @include device-lg {
         width: 6rem;
         overflow: hidden;
       }
@@ -142,7 +148,7 @@ export default {
 
     &--open {
 
-      @include device-med {
+      @include device-lg {
         width: 22rem;
         overflow: auto;
       }
@@ -159,7 +165,7 @@ export default {
   
     &--pushed {
 
-      @include device-med {
+      @include device-lg {
         margin-left: 23rem;
       }
     }
