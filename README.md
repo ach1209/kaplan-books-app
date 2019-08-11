@@ -1,4 +1,4 @@
-# kaplan-books-app
+# Kaplan Books App
 
 ## Project setup
 ```
