@@ -98,9 +98,11 @@ export default {
 
       &--closed {
         transform: translateX(-100vw);
+        display: none;
 
         @include device-lg {
           transform: none;
+          display: block;
         }
       }
 
