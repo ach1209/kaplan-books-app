@@ -2,7 +2,7 @@
   <div id="app">
     <AppHeader></AppHeader>
     <SubHeader></SubHeader>
-    <BooksList v-bind:books="books"></BooksList>
+    <BooksList :books="books"></BooksList>
   </div>
 </template>
 
@@ -27,9 +27,7 @@ export default {
   },
   created() {
     const url = 'https://www.googleapis.com/books/v1/volumes?q=kaplan%20test%20prep'
-    axios.get(url).then(response => {
-      this.books = response.data.items;
-    })
+    axios.get(url).then(response => this.books = response.data.items);
   }
 }
 </script>

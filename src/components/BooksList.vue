@@ -7,13 +7,13 @@
         <label for="name" class="searchField__label">Search for books</label>
       </div>
     </div>
-    <div class="card" v-for="book in searchBooks" v-bind:key="book.id">
+    <div class="card" v-for="book in searchBooks" :key="book.id">
       <h3 class="card__header">{{ book.volumeInfo.title }}</h3>
       <div class="card__content">
         <p class="u-top-margin"><strong>Publisher:</strong> {{ book.volumeInfo.publisher}}</p>
         <p class="u-top-margin" v-html="book.searchInfo.textSnippet"></p>
         <span class="card-btn card-btn--enabled u-top-margin" v-if="book.saleInfo.saleability === 'FOR_SALE'">
-          <a v-bind:href="book.saleInfo.buyLink">Available</a>
+          <a :href="book.saleInfo.buyLink">Available</a>
         </span>
         <span class="card-btn card-btn--disabled u-top-margin" v-else>Not Available</span>
       </div>
@@ -33,7 +33,7 @@ export default {
     books: Array
   },
   computed: {
-    searchBooks: function() {
+    searchBooks() {
       return this.books.filter((book) => {
         return book.volumeInfo.title.match(this.search);
       });

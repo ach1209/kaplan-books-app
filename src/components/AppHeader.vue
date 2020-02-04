@@ -1,11 +1,11 @@
 <template>
   <div class="header">
-    <div class="header__menu" v-bind:class="[isToggled ? 'header__menu--open' : 'header__menu--closed']">
-      <div class="header__menu-icon" v-on:click="toggleNav">
+    <div class="header__menu" :class="[isToggled ? 'header__menu--open' : 'header__menu--closed']">
+      <div class="header__menu-icon" @click="toggleNav">
         <a href="#"><i class="material-icons">menu</i></a>      
       </div>
 
-      <ul class="header__menu-items" v-bind:class="[isToggled ? 'header__menu-items--open' : 'header__menu-items--closed']">
+      <ul class="header__menu-items" :class="[isToggled ? 'header__menu-items--open' : 'header__menu-items--closed']">
         <li>
           <a href="#"><i class="material-icons">assignment</i>Project Management</a>
         </li>
@@ -15,7 +15,7 @@
       </ul>
     </div>
 
-    <span class="header__title" v-bind:class="[isToggled ? 'header__title--pushed' : '']">Kaplan Books</span>
+    <span class="header__title" :class="[isToggled ? 'header__title--pushed' : '']">Kaplan Books</span>
   </div>
 </template>
 
@@ -28,7 +28,7 @@ export default {
     }
   },
   methods: {
-    toggleNav: function() {
+    toggleNav() {
       this.isToggled = !this.isToggled;
     }
   }
