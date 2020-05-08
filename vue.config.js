@@ -8,6 +8,5 @@ module.exports = {
         `
       }
     }
-  },
-  publicPath: 'kaplan-books-app'
+  }
 }

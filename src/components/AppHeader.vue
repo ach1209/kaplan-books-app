@@ -4,7 +4,6 @@
       <div class="header__menu-icon" @click="toggleNav">
         <a href="#"><i class="material-icons">menu</i></a>      
       </div>
-
       <ul class="header__menu-items" :class="[isToggled ? 'header__menu-items--open' : 'header__menu-items--closed']">
         <li>
           <a href="#"><i class="material-icons">assignment</i>Project Management</a>
@@ -14,7 +13,6 @@
         </li>
       </ul>
     </div>
-
     <span class="header__title" :class="[isToggled ? 'header__title--pushed' : '']">Kaplan Books</span>
   </div>
 </template>
@@ -35,27 +33,28 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 .header {
+  @include flex-center;  
   position: relative;
-  background-color: $bgColor;
   min-height: 6rem;
   padding-right: 2rem;
   padding-left: 2rem;
-  @include flex-center-align;
+  background-color: $bgColor;
 
   @include device-lg {
     position: unset;
   }
 
   &__menu {
+    display: flex;
+    flex-direction: column;    
     position: absolute;
     top: 0;
     left: 0;
     z-index: 1;
-    display: flex;
-    flex-direction: column;
+    cursor: pointer;    
     transition: all 0.3s cubic-bezier(.86,.16,.12,.91);
 
     @include device-lg {
@@ -66,13 +65,8 @@ export default {
       height: 100vh;    
     }
 
-    &:hover,
-    &:focus {
-      cursor: pointer;
-    }
-
     &-icon {
-      @include flex-center-align;      
+      @include flex-center;      
       height: 6rem;
 
       a {
@@ -83,11 +77,11 @@ export default {
     }
 
     &-items {
-      background-color: $bgColor;
-      list-style-type: none;
       display: block;
-      border-bottom: 1px solid $borderColor;
-      width: 100vw;
+      width: 100vw;         
+      background-color: $bgColor;
+      border-bottom: 1px solid $borderColor;      
+      list-style-type: none;
       transition: all 0.5s cubic-bezier(.86,.16,.12,.91);
 
       @include device-lg {
@@ -97,12 +91,12 @@ export default {
       }
 
       &--closed {
-        transform: translateX(-100vw);
         display: none;
+        transform: translateX(-100vw);
 
         @include device-lg {
+          display: block; 
           transform: none;
-          display: block;
         }
       }
 
@@ -125,13 +119,13 @@ export default {
         }
 
         a {
+          @include flex-center;
           width: 20.2rem;
+          margin-left: 1.7rem;
           font-size: 1.2rem;
           color: $fontColor;
           text-decoration: none;
-          margin-left: 1.7rem;
           text-transform: uppercase;
-          @include flex-center-align;
 
           .material-icons {
             margin-right: 2rem;
@@ -141,7 +135,6 @@ export default {
     }
 
     &--closed {
-
       @include device-lg {
         width: 6rem;
         overflow: hidden;
@@ -149,7 +142,6 @@ export default {
     }
 
     &--open {
-
       @include device-lg {
         width: 22rem;
         overflow: auto;
@@ -166,7 +158,6 @@ export default {
     transition: all 0.3s cubic-bezier(.86,.16,.12,.91);
   
     &--pushed {
-
       @include device-lg {
         margin-left: 23rem;
       }
