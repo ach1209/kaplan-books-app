@@ -12,7 +12,8 @@
       <div class="book-card__content book-card--flex-1">
         <p class="book-card--mgT" v-if="book.volumeInfo.publisher"><strong>Publisher:</strong> {{ book.volumeInfo.publisher}}</p>
         <p class="book-card--mgT" v-else><strong>Publisher:</strong> N/A</p>
-        <p class="book-card--mgT book-card--flex-1" v-html="book.searchInfo.textSnippet"></p>
+        <p class="book-card--mgT book-card--flex-1" v-if="book.searchInfo" v-html="book.searchInfo.textSnippet"></p>
+        <p class="book-card--mgT book-card--flex-1" v-else>No description available.</p>
         <span class="book-card__btn book-card__btn--enabled book-card--mgT" v-if="book.saleInfo.saleability === 'FOR_SALE'">
           <a :href="book.saleInfo.buyLink">Available</a>
         </span>
